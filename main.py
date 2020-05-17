@@ -48,7 +48,7 @@ class MainWindow():
         loginusrentry.pack()
         Label(mainlogin, text = '', bg = 'light cyan').pack() #Space
         Label(mainlogin, text = 'Password : ', bg = 'light cyan', font = ('Calibri', 13)).pack()
-        loginpassentry = Entry(mainlogin, width = '30')
+        loginpassentry = Entry(mainlogin, show = '*', width = '30')
         loginpassentry.pack()
         Label(mainlogin, text = '', bg = 'light cyan').pack() #Space
         Button(mainlogin, text = "Login", height = "2", width = "30").pack()
@@ -71,7 +71,7 @@ class MainWindow():
         registusrentry.pack()
         Label(mainregist, text = '', bg = 'light cyan').pack() #Space
         Label(mainregist, text = 'Password : ', bg = 'light cyan', font = ('Calibri', 13)).pack()
-        registpassentry = Entry(mainregist, width = '30')
+        registpassentry = Entry(mainregist, show = '*', width = '30')
         registpassentry.pack()
         Label(mainregist, text = '', bg = 'light cyan').pack() #Space
         Button(mainregist, text = "Register", height = "2", width = "30", command = cal.Registdb).pack()
