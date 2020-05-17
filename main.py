@@ -55,9 +55,9 @@ class MainWindow():
         btn = Button(mainlogin, text = "Back", height = "2", width = "30", command = mainlogin.destroy).pack()
         mainlogin.configure(bg = "light cyan")
     def Regist(self):
-        #global registusrentry
-        #global registpassentry
-        #global mainregist
+        global registusrentry
+        global registpassentry
+        global mainregist
         cal = MainWindow()
         mainregist = Toplevel(main)
         mainregist.title("Login")
@@ -86,7 +86,7 @@ class MainWindow():
         else:
             curr.execute("INSERT into user(usrname, passwd) values (%s, %s)", (usr, passwd))
             mydb.commit()
-            messagebox.showinfo(title = "Success", message = "Akun anda berhasil didaftarkan")
+            messagebox.showinfo(title = "Success", message = "Akun anda berhasil didaftarkan \n\nSilahkan login")
             mainregist.destroy()
     def Logindb(self):
         cal = MainWindow()
@@ -97,9 +97,10 @@ class MainWindow():
             messagebox.showerror(title = "Error", message = "Masukan Username dan Password")
             mainlogin.destroy()
         else:
-            #messagebox.showinfo(title = "Success", message = "Berhasil login")
-            messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
-            mainlogin.destroy()
+            curr.execute("SELECT * from user where usrname = "" and passwd = "" ",(usr, passwd))
+            a = curr.fetchone()
+            #messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
+            #mainlogin.destroy()
             cal.dashboard()
     def dashboard(self):
         dashboard = Toplevel(main)
