@@ -98,8 +98,8 @@ class MainWindow():
             mainlogin.destroy()
         else:
             curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s ",(usr, passwd))
-            a = curr.fetchone()
-            if a:
+            usrget = curr.fetchone()
+            if usrget:
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
                 cal.dashboard()
