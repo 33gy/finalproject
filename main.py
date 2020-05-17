@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 import sys
 import mysql.connector
-from tkinter import messagebox
 
 global mydb
 global curr
@@ -35,6 +35,7 @@ class MainWindow():
     def login(self):
         global loginusrentry
         global loginpassentry
+        global mainlogin
         cal = MainWindow()
         mainlogin = Toplevel(main)
         mainlogin.title('Login')
@@ -49,7 +50,7 @@ class MainWindow():
         loginpassentry = Entry(mainlogin, show = '*', width = '30')
         loginpassentry.pack()
         Label(mainlogin, text = '', bg = 'light cyan').pack() #Space
-        Button(mainlogin, text = "Login", height = "2", width = "30").pack()
+        Button(mainlogin, text = "Login", height = "2", width = "30", command = cal.Logindb).pack()
         Label(mainlogin, text = '', bg = 'light cyan').pack() #Space
         btn = Button(mainlogin, text = "Back", height = "2", width = "30", command = mainlogin.destroy).pack()
         mainlogin.configure(bg='light cyan')
@@ -87,12 +88,27 @@ class MainWindow():
             mydb.commit()
             messagebox.showinfo(title = 'Success', message = 'Akun anda berhasil didaftarkan')
             mainregist.destroy()
-    #def Logindb(self):
-        #data = (
-            #loginusrentry.get()
-            #loginpassentry.get()
-        #)
-        #curr.execute()
+    def Logindb(self):
+        cal = MainWindow()
+        usr = loginusrentry.get()
+        passwd = loginpassentry.get()
+        
+        if(usr == '' or passwd == ''):
+            messagebox.showerror(title = 'Error', message = 'Masukan Username dan Password')
+            mainlogin.destroy()
+        else:
+            #messagebox.showinfo(title = 'Success', message = 'Berhasil login')
+            messagebox.showinfo(title = 'Success', message = 'Welcome '+ usr)
+            mainlogin.destroy()
+            cal.dashboard()
+    def dashboard(self):
+        dashboard = Toplevel(main)
+        dashboard.title('Dashboard')
+        dashboard.attributes("-fullscreen", True)
+        dashboard.configure(bg = "light cyan")
+        Label(dashboard, text = "Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, 'bold')).pack()
+        Label(dashboard, text = '', bg = 'light cyan').pack() #Space
+        Button(dashboard, text = "Log out", height = "2", width = "30", command = dashboard.destroy).pack()
         
 if __name__ == "__main__":
     cal = MainWindow()
