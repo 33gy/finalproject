@@ -97,11 +97,15 @@ class MainWindow():
             messagebox.showerror(title = "Error", message = "Masukan Username dan Password")
             mainlogin.destroy()
         else:
-            curr.execute("SELECT * from user where usrname = "" and passwd = "" ",(usr, passwd))
+            curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s ",(usr, passwd))
             a = curr.fetchone()
-            #messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
-            #mainlogin.destroy()
-            cal.dashboard()
+            if a:
+                messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
+                mainlogin.destroy()
+                cal.dashboard()
+            else:
+                messagebox.showerror(title = "Error", message = "Username atau Password yang anda masukan salah")
+                mainlogin.destroy()
     def dashboard(self):
         dashboard = Toplevel(main)
         dashboard.title("Dashboard")
