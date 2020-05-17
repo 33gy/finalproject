@@ -22,7 +22,6 @@ class MainWindow():
         main = Tk()
         main.title('LibrarySystem')
         main.attributes("-fullscreen", True)
-        #main.geometry('600x600')
         Label(text = "LibrarySystem", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, 'bold')).pack()
         Label(text = '', bg = 'light cyan').pack() #Space
         Button(text = "Login", height = "2", width = "30", command = cal.login).pack()
@@ -31,7 +30,6 @@ class MainWindow():
         Label(text = '', bg = 'light cyan').pack() #Space
         Button(text = "Exit",height = "2", width = "30", command = cal.Quit).pack()
         main.configure(bg='light cyan')
-        #main.mainloop()
     def Quit(self):
         sys.exit()
     def login(self):
@@ -55,7 +53,6 @@ class MainWindow():
         Label(mainlogin, text = '', bg = 'light cyan').pack() #Space
         btn = Button(mainlogin, text = "Back", height = "2", width = "30", command = mainlogin.destroy).pack()
         mainlogin.configure(bg='light cyan')
-        #mainlogin.geometry('600x600')
     def Regist(self):
         global registusrentry
         global registpassentry
@@ -78,19 +75,15 @@ class MainWindow():
         Label(mainregist, text = '', bg = 'light cyan').pack() #Space
         Button(mainregist, text = "Back", height = "2", width = "30", command = mainregist.destroy).pack()
         mainregist.configure(bg='light cyan')
-        #mainlogin.geometry('600x600')
     def Registdb(self):
-        data = (
-            registusrentry.get(),
-            registpassentry.get()
-        )
-        a=registusrentry.get()
-        b=registpassentry.get()
-        if(a=="" or b==""):
+        usr=registusrentry.get()
+        passwd=registpassentry.get()
+        
+        if(usr=="" or passwd==""):
             messagebox.showerror(title = 'Error', message='Masukan Username dan Password')
             mainregist.destroy()
         else:
-            curr.execute('INSERT into user(usrname, passwd) values (%s, %s)', data)
+            curr.execute('INSERT into user(usrname, passwd) values (%s, %s)', (usr, passwd))
             mydb.commit()
             messagebox.showinfo(title = 'Success', message = 'Akun anda berhasil didaftarkan')
             mainregist.destroy()
