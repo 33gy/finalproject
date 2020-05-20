@@ -3,6 +3,8 @@ from tkinter import ttk
 from tkinter import messagebox
 import sys
 import mysql.connector
+import dashboard
+import admindashboard
 
 global mydb
 global curr
@@ -103,39 +105,19 @@ class MainWindow():
             usrget = curr.fetchone()
             if (usrgetadmin):
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
+                get = admindashboard.AdminDashboard()
+                get.AdminDashboard()
                 mainlogin.destroy()
-                cal.DashboardAdmin()
+                main.destroy()
             elif (usrget):
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
+                get = dashboard.Dashboard()
+                get.Dashboard()
                 mainlogin.destroy()
-                cal.Dashboard()
+                main.destroy()
             else:
                 messagebox.showerror(title = "Error", message = "Username atau Password yang anda masukan salah")
                 mainlogin.destroy()
-    def Dashboard(self):
-        global dashboard
-        cal = MainWindow()
-        dashboard = Toplevel(main)
-        dashboard.title("Dashboard")
-        dashboard.attributes("-fullscreen", True)
-        dashboard.configure(bg = "light cyan")
-        Label(dashboard, text = "Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
-        Label(dashboard, text = "", bg = "light cyan").pack() #Space
-        Button(dashboard, text = "Log out", height = "2", width = "30", command = cal.Logout).pack()
-    def DashboardAdmin(self):
-        global dashboardadmin
-        cal = MainWindow()
-        dashboardadmin = Toplevel(main)
-        dashboardadmin.title("Admin Dashboard")
-        dashboardadmin.attributes("-fullscreen", True)
-        dashboardadmin.configure(bg = "light cyan")
-        Label(dashboardadmin, text = "Admin Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
-        Label(dashboardadmin, text = "", bg = "light cyan").pack() #Space
-        Button(dashboardadmin, text = "Log out", height = "2", width = "30", command = cal.LogoutAdmin).pack()
-    def Logout(self):
-        dashboard.destroy()
-    def LogoutAdmin(self):
-        dashboardadmin.destroy()
 if __name__ == "__main__":
     cal = MainWindow()
     cal.Main()
