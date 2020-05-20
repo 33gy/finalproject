@@ -101,7 +101,11 @@ class MainWindow():
             usrget1 = curr.fetchone()
             curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s",(usr, passwd))
             usrget = curr.fetchone()
-            if (usrget or usrget1):
+            if (usrget1):
+                messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
+                mainlogin.destroy()
+                cal.dashboardadmin()
+            elif (usrget):
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
                 cal.dashboard()
@@ -118,8 +122,20 @@ class MainWindow():
         Label(dashboard, text = "Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
         Label(dashboard, text = "", bg = "light cyan").pack() #Space
         Button(dashboard, text = "Log out", height = "2", width = "30", command = cal.Logout).pack()
+    def dashboardadmin(self):
+        global dashboardadmin
+        cal = MainWindow()
+        dashboardadmin = Toplevel(main)
+        dashboardadmin.title("Admin Dashboard")
+        dashboardadmin.attributes("-fullscreen", True)
+        dashboardadmin.configure(bg = "light cyan")
+        Label(dashboardadmin, text = "Admin Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
+        Label(dashboardadmin, text = "", bg = "light cyan").pack() #Space
+        Button(dashboardadmin, text = "Log out", height = "2", width = "30", command = cal.LogoutAdmin).pack()
     def Logout(self):
         dashboard.destroy()
+    def LogoutAdmin(self):
+        dashboardadmin.destroy()
 if __name__ == "__main__":
     cal = MainWindow()
     cal.Main()
