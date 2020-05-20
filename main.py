@@ -97,9 +97,11 @@ class MainWindow():
             messagebox.showerror(title = "Error", message = "Masukan Username dan Password")
             mainlogin.destroy()
         else:
-            curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s ",(usr, passwd))
+            curr.execute("SELECT * from admin WHERE usrname = %s AND passwd = %s",(usr, passwd))
+            usrget1 = curr.fetchone()
+            curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s",(usr, passwd))
             usrget = curr.fetchone()
-            if usrget:
+            if (usrget or usrget1):
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
                 cal.dashboard()
