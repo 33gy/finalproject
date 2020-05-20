@@ -1,8 +1,5 @@
 from tkinter import *
-from tkinter import ttk
-from tkinter import messagebox
 import sys
-import mysql.connector
 import dashboard, admindashboard, loginsystem, registsystem
 
  
