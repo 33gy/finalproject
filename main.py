@@ -24,7 +24,7 @@ class MainWindow():
         main.attributes("-fullscreen", True)
         Label(text = "LibrarySystem", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
         Label(text = "", bg = "light cyan").pack() #Space
-        Button(text = "Login", height = "2", width = "30", command = cal.login).pack()
+        Button(text = "Login", height = "2", width = "30", command = cal.Login).pack()
         Label(text = "", bg = "light cyan").pack() #Space
         Button(text = "Register",height = "2", width = "30", command = cal.Regist).pack()
         Label(text = "", bg = "light cyan").pack() #Space
@@ -32,7 +32,7 @@ class MainWindow():
         main.configure(bg = "light cyan")
     def Quit(self):
         sys.exit()
-    def login(self):
+    def Login(self):
         global loginusrentry
         global loginpassentry
         global mainlogin
@@ -104,15 +104,15 @@ class MainWindow():
             if (usrgetadmin):
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
-                cal.dashboardadmin()
+                cal.DashboardAdmin()
             elif (usrget):
                 messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
-                cal.dashboard()
+                cal.Dashboard()
             else:
                 messagebox.showerror(title = "Error", message = "Username atau Password yang anda masukan salah")
                 mainlogin.destroy()
-    def dashboard(self):
+    def Dashboard(self):
         global dashboard
         cal = MainWindow()
         dashboard = Toplevel(main)
@@ -122,7 +122,7 @@ class MainWindow():
         Label(dashboard, text = "Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
         Label(dashboard, text = "", bg = "light cyan").pack() #Space
         Button(dashboard, text = "Log out", height = "2", width = "30", command = cal.Logout).pack()
-    def dashboardadmin(self):
+    def DashboardAdmin(self):
         global dashboardadmin
         cal = MainWindow()
         dashboardadmin = Toplevel(main)
