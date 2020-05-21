@@ -1,7 +1,7 @@
 from tkinter import *
-from tkinter import messagebox
 import main, dashboard, admindashboard
 import mysql.connector
+import tkinter.messagebox
 
 
 global mydb
@@ -41,30 +41,37 @@ class LoginSystem():
     def Logindb(self):
         usr = loginusrentry.get()
         passwd = loginpassentry.get()
+        cal = LoginSystem()
         
         if(usr == "" or passwd == ""):
-            messagebox.showerror(title = "Error", message = "Masukan Username dan Password")
+            cal.NoInput()
         else:
             curr.execute("SELECT * from admin WHERE usrname = %s AND passwd = %s",(usr, passwd))
             usrgetadmin = curr.fetchone()
             curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s",(usr, passwd))
             usrget = curr.fetchone()
             if (usrgetadmin):
-                #messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
                 get = admindashboard.AdminDashboard()
                 get.AdminDashboard()
             elif (usrget):
-                #messagebox.showinfo(title = "Success", message = "Welcome "+ usr)
                 mainlogin.destroy()
                 get = dashboard.Dashboard()
                 get.Dashboard()
             else:
-                #messagebox.showerror(title = "Error", message = "Username atau Password yang anda masukan salah")
-                mainlogin.destroy()
+                cal.ErrorLogin()
     def Back(self):
         cal = main.MainWindow()
         cal.Main()
         mainlogin.destroy()
-    def logincal(self):
-        mainlogin.mainloop()
+    def NoInput(self):
+        noinput = Tk()
+        noinput.withdraw()
+        tkinter.messagebox.showinfo(title="Error", message="Masukan Username dan Password")
+        noinput.destroy()
+    def ErrorLogin(self):
+        cal = LoginSystem()
+        errorlogin = Tk()
+        errorlogin.withdraw()
+        tkinter.messagebox.showinfo(title="Error", message="Username atau Password yang anda masukan salah")
+        errorlogin.destroy()
