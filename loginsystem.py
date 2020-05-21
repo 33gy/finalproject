@@ -1,7 +1,8 @@
 from tkinter import *
+import tkinter.messagebox
 import main, dashboard, admindashboard
 import mysql.connector
-import tkinter.messagebox
+
 
 
 global mydb
