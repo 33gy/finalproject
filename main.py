@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox
 import sys
 import dashboard, admindashboard, loginsystem, registsystem
 
@@ -19,7 +20,15 @@ class MainWindow():
         Button(text = "Exit",height = "2", width = "30", command = cal.Quit).pack()
         main.configure(bg = "light cyan")
     def Quit(self):
-        sys.exit()
+        back = Tk()
+        back.withdraw()
+        ask = tkinter.messagebox.askokcancel(title = "Quit", message = "Apakah anda yakin untuk keluar?")
+        if (ask == 1):
+            back.destroy()
+            sys.exit()
+        else:
+            back.destroy()
+        
     def Login(self):
         get = loginsystem.LoginSystem()
         get.Login()
