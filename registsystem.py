@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import messagebox
+import tkinter.messagebox
 import main, dashboard, admindashboard
 import mysql.connector
 
@@ -41,14 +41,14 @@ class RegistSystem():
     def Registdb(self):
         usr = registusrentry.get()
         passwd = registpassentry.get()
+        cal = RegistSystem()
 
         if(usr == "" or passwd == ""):
-            messagebox.showerror(title = "Error", message = "Masukan Username dan Password")
-            mainregist.destroy()
+            cal.NoInput()
         else:
             curr.execute("INSERT into user(usrname, passwd) values (%s, %s)", (usr, passwd))
             mydb.commit()
-            #messagebox.showinfo(title = "Success", message = "Akun anda berhasil didaftarkan \n\nSilahkan login")
+            cal.RegistSuccess()
             mainregist.destroy()
             get = main.MainWindow()
             get.Main()
@@ -56,3 +56,14 @@ class RegistSystem():
         cal = main.MainWindow()
         cal.Main()
         mainregist.destroy()
+    def NoInput(self):
+        noinput = Tk()
+        noinput.withdraw()
+        tkinter.messagebox.showinfo(title="Error", message="Masukan Username dan Password")
+        noinput.destroy()
+    def RegistSuccess(self):
+        cal = RegistSystem()
+        registsuccess = Tk()
+        registsuccess.withdraw()
+        tkinter.messagebox.showinfo(title="Error", message="Akun anda berhasil didaftarkan \n\nSilahkan login")
+        registsuccess.destroy()
