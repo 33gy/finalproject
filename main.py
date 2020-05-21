@@ -27,8 +27,7 @@ class MainWindow():
             back.destroy()
             sys.exit()
         else:
-            back.destroy()
-        
+            back.destroy()  
     def Login(self):
         get = loginsystem.LoginSystem()
         get.Login()

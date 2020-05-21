@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox
 import main
 
 class AdminDashboard():
@@ -13,7 +14,12 @@ class AdminDashboard():
         Label(admindashboard, text = "", bg = "light cyan").pack() #Space
         Button(admindashboard, text = "Log out", height = "2", width = "30", command = cal.Logout).pack()
     def Logout(self):
-        admindashboard.destroy()
-        get = main.MainWindow()
-        get.Main()
-        
+        back = Tk()
+        back.withdraw()
+        ask = tkinter.messagebox.askokcancel(title = "Log Out", message = "Apakah anda yakin untuk keluar?")
+        if (ask == 1):
+            admindashboard.destroy()
+            get = main.MainWindow()
+            get.Main()
+        else:
+            back.destroy()
