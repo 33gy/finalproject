@@ -1,9 +1,10 @@
 from tkinter import *
 import tkinter.messagebox
 import sys
-import dashboard, admindashboard, loginsystem, registsystem
+from login import loginsystem, registsystem
+from dashboard import dashboard, admindashboard
 
- 
+
 class MainWindow():
     def Main(self):
         cal = MainWindow()
