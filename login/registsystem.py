@@ -14,7 +14,6 @@ mydb = mysql.connector.connect(
 )
 curr=mydb.cursor()
 
-
 class RegistSystem():    
     def Regist(self):
         global registusrentry
@@ -42,16 +41,19 @@ class RegistSystem():
         usr = registusrentry.get()
         passwd = registpassentry.get()
         cal = RegistSystem()
-
+       
         if(usr == "" or passwd == ""):
             cal.NoInput()
         else:
-            curr.execute("INSERT into user(usrname, passwd) values (%s, %s) SELECT * FROM (SELECT usrname) AS tmp WHERE NOT EXISTS (SELECT usrname FROM user WHERE usrname = %s", (usr, passwd))
-            mydb.commit()
-            cal.RegistSuccess()
-            mainregist.destroy()
-            get = main.MainWindow()
-            get.Main()
+            try:
+                curr.execute("INSERT into user(usrname, passwd) values (%s, %s)", (usr, passwd))
+                mydb.commit()
+                cal.RegistSuccess()
+                mainregist.destroy()
+                get = main.MainWindow()
+                get.Main()
+            except mysql.connector.Error as Error:
+                cal.UsrDouble()
     def Back(self):
         cal = main.MainWindow()
         cal.Main()
@@ -67,3 +69,9 @@ class RegistSystem():
         registsuccess.withdraw()
         tkinter.messagebox.showinfo(title="Success", message="Akun anda berhasil didaftarkan \n\nSilahkan login")
         registsuccess.destroy()
+    def UsrDouble(self):
+        cal = RegistSystem()
+        UserDouble = Tk()
+        UserDouble.withdraw()
+        tkinter.messagebox.showinfo(title="Error", message="Username yang anda masukan sudah terdaftar\nLogin dengan username yang telah ada atau pilih username lain")
+        UserDouble.destroy()
