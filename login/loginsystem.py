@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 import tkinter.messagebox
 import main
 import mysql.connector
@@ -25,19 +26,26 @@ class LoginSystem():
         mainlogin = Tk()
         mainlogin.title("Login")
         mainlogin.attributes("-fullscreen", True)
-        Label(mainlogin, text = "LibrarySystem Login", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
-        Label(mainlogin, text = "", bg = "light cyan").pack() #Space
-        Label(mainlogin, text = "Username : ", bg = "light cyan", font = ("Calibri", 13)).pack()
-        loginusrentry = Entry(mainlogin, width = "30")
-        loginusrentry.pack()
-        Label(mainlogin, text = "", bg = "light cyan").pack() #Space
-        Label(mainlogin, text = "Password : ", bg = "light cyan", font = ("Calibri", 13)).pack()
-        loginpassentry = Entry(mainlogin, show = "*", width = "30")
-        loginpassentry.pack()
-        Label(mainlogin, text = "", bg = "light cyan").pack() #Space
-        Button(mainlogin, text = "Login", height = "2", width = "30", command = cal.Logindb).pack()
-        Label(mainlogin, text = "", bg = "light cyan").pack() #Space
-        btn = Button(mainlogin, text = "Back", height = "2", width = "30", command = cal.Back).pack()
+        screen_width = mainlogin.winfo_screenwidth() # get screen width 
+        screen_height = mainlogin.winfo_screenheight() # get screen height
+        top = Label(mainlogin, text = "LibrarySystem", bg = "spring green", font = ("Calibri", 30, "bold")) # header
+        top.place(x = 0, y = 0, width = screen_width, height = screen_height/12) # header placement
+        #Label(mainlogin, text = "", bg = "light cyan").pack() #Space
+        usrname_label = Label(mainlogin, text = "Username : ", bg = "light cyan", font = ("Calibri", 20)) #usrname label
+        usrname_label.place(x = screen_width/2.16, y = screen_height/11) #usrname_label placement
+        loginusrentry = ttk.Entry(mainlogin) # loginusr entry
+        loginusrentry.place(x = screen_width/2.28, y = screen_height/7.5, width = 230, height = 30) #loginusrentry placement
+        #Label(mainlogin, text = "", bg = "light cyan").pack() #Space
+        passwd_label = Label(mainlogin, text = "Password : ", bg = "light cyan", font = ("Calibri", 20)) #passwd label
+        passwd_label.place(x = screen_width/2.15, y = screen_height/6) #passwd_label placement
+        loginpassentry = ttk.Entry(mainlogin, show = "*") #loginpass entry
+        loginpassentry.place(x = screen_width/2.28, y = screen_height/4.8, width = 230, height = 30) #loginpassentry placement
+        #Label(mainlogin, text = "", bg = "light cyan").pack() #Space
+        login_btn = ttk.Button(mainlogin, text = "Login", command = cal.Logindb) #login button
+        login_btn.place(x = screen_width/2.28, y = screen_height/4, width=230,height=50) #login_btn placement
+        #Label(mainlogin, text = "", bg = "light cyan").pack() #Space
+        back_btn = ttk.Button(mainlogin, text = "Back", command = cal.Back) #back button
+        back_btn.place(x = screen_width/2.28, y = screen_height/3.25, width=230,height=50) #back_btn placement
         mainlogin.configure(bg = "light cyan")
     def Logindb(self):
         usr = loginusrentry.get()
