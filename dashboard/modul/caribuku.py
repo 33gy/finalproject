@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 import tkinter.messagebox
 import mysql.connector
 import main
@@ -14,6 +15,7 @@ class CariBuku():
         caribuku.configure(bg = "light cyan")
         Label(caribuku, text = "Cari Buku", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
         Label(caribuku, text = "", bg = "light cyan").pack() #Space
+        test = ttk.Button(text = "test").pack()
         Button(caribuku, text = "Back", height = "2", width = "30", command = cal.Logout).pack()
         caribuku.mainloop()
     def Logout(self):
