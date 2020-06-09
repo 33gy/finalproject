@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 import tkinter.messagebox
 import main
 import mysql.connector
@@ -23,19 +24,22 @@ class RegistSystem():
         mainregist = Tk()
         mainregist.title("Login")
         mainregist.attributes("-fullscreen", True)
-        Label(mainregist, text = "LibrarySystem Register", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
-        Label(mainregist, text = "", bg = "light cyan").pack() #Space
-        Label(mainregist, text = "Username : ", bg = "light cyan", font = ("Calibri", 13)).pack()
-        registusrentry = Entry(mainregist, width = "30")
-        registusrentry.pack()
-        Label(mainregist, text = "", bg = "light cyan").pack() #Space
-        Label(mainregist, text = "Password : ", bg = "light cyan", font = ("Calibri", 13)).pack()
-        registpassentry = Entry(mainregist, show = "*", width = "30")
-        registpassentry.pack()
-        Label(mainregist, text = "", bg = "light cyan").pack() #Space
-        Button(mainregist, text = "Register", height = "2", width = "30", command = cal.Registdb).pack()
-        Label(mainregist, text = "", bg = "light cyan").pack() #Space
-        Button(mainregist, text = "Back", height = "2", width = "30", command = cal.Back).pack()
+        screen_width = mainregist.winfo_screenwidth() # get screen width 
+        screen_height = mainregist.winfo_screenheight() # get screen height
+        top = Label(mainregist, text = "LibrarySystem", bg = "spring green", font = ("Calibri", 30, "bold")) # header
+        top.place(x = 0, y = 0, width = screen_width, height = screen_height/12) # header placement
+        usrname_label = Label(mainregist, text = "Username : ", bg = "light cyan", font = ("Calibri", 20)) #usrname label
+        usrname_label.place(x = screen_width/2.16, y = screen_height/11) #usrname_label placement
+        registusrentry = ttk.Entry(mainregist) # loginusr entry
+        registusrentry.place(x = screen_width/2.28, y = screen_height/7.5, width = 230, height = 30) #registusrentry placement
+        passwd_label = Label(mainregist, text = "Password : ", bg = "light cyan", font = ("Calibri", 20)) #passwd label
+        passwd_label.place(x = screen_width/2.15, y = screen_height/6) #passwd_label placement
+        registpassentry = ttk.Entry(mainregist, show = "*") #registpass entry
+        registpassentry.place(x = screen_width/2.28, y = screen_height/4.8, width = 230, height = 30) #registpassentry placement
+        regist_btn = ttk.Button(mainregist, text = "Register", command = cal.Registdb) #regist button
+        regist_btn.place(x = screen_width/2.28, y = screen_height/4, width=230,height=50) #regist_btn placement
+        back_btn = ttk.Button(mainregist, text = "Back", command = cal.Back) #back button
+        back_btn.place(x = screen_width/2.28, y = screen_height/3.25, width=230,height=50) #back_btn placement
         mainregist.configure(bg = "light cyan")
     def Registdb(self):
         usr = registusrentry.get()
