@@ -43,9 +43,10 @@ class PendaftaranBuku():
         penerbit_buku.place(x = screen_width/2.13, y = screen_height/4.2)
         penerbit_buku_entry = ttk.Entry(pendaftaranbuku)
         penerbit_buku_entry.place(x = screen_width/2.28, y = screen_height/3.6, width = 230, height = 30)
-        back_btn = ttk.Button(pendaftaranbuku, text = "Back", command = cal.InsertBuku)
+        insert_btn = ttk.Button(pendaftaranbuku, text = "Insert", command = cal.InsertBuku)
+        insert_btn.place(x = screen_width/2.28, y = screen_height/3.1, width=230, height=50)
+        back_btn = ttk.Button(pendaftaranbuku, text = "Back", command = cal.Back)
         back_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
-        #caribuku.mainloop()
     def Back(self):
         #back = Tk()
         #back.withdraw()
@@ -70,6 +71,14 @@ class PendaftaranBuku():
         if (nama == "" or penulis == "" or penerbit == ""):
             cal.NoInput()
         else:
-                curr.execute("INSERT into daftar_buku(namabuku, penulisbuku, penerbitbuku) values (%s, %s, %s)", (nama, penulis, penerbit))
-                mydb.commit()
-                print("ssss")
+            curr.execute("INSERT into daftar_buku(namabuku, penulisbuku, penerbitbuku) values (%s, %s, %s)", (nama, penulis, penerbit))
+            mydb.commit()
+            cal.SuccessInsert()
+    def SuccessInsert(self):
+        success = Tk()
+        success.withdraw()
+        tkinter.messagebox.showinfo(title="success", message="success mendaftarkan buku")
+        success.destroy()
+        nama_buku_entry.delete(0, 'end')
+        penulis_buku_entry.delete(0, 'end')
+        penerbit_buku_entry.delete(0, 'end')
