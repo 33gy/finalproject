@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.ttk as ttk
 import tkinter.messagebox
 import mysql.connector
 import main
@@ -23,16 +24,18 @@ class Dashboard():
         dashboard.title("Dashboard")
         dashboard.attributes("-fullscreen", True)
         dashboard.configure(bg = "light cyan")
-        Label(dashboard, text = "Dashboard", bg = "spring green", width = "300", height = "2", font = ("Calibri", 20, "bold")).pack()
-        Label(dashboard, text = "", bg = "light cyan").pack() #Space
-        caribuku = Button(dashboard, text = "Cari Buku", height = "7", width = "20", bg = "pale green", command = cal.CariBuku)
-        caribuku.place(x = 30, y = 120)
-        pinjambuku = Button(dashboard, text = "Pinjam Buku", height = "7", width = "20", bg = "pale green")
-        pinjambuku.place(x = 200, y = 120)
-        peminjaman = Button(dashboard, text = "Peminjaman", height = "7", width = "20", bg = "pale green")
-        peminjaman.place(x = 370, y = 120)
-        Label(dashboard, text = "", bg = "light cyan").pack() #Space
-        Button(dashboard, text = "Log out", height = "2", width = "30", command = cal.Logout).pack()
+        screen_width = dashboard.winfo_screenwidth() # get screen width 
+        screen_height = dashboard.winfo_screenheight() # get screen height
+        top = Label(text = "Dashboard", bg = "spring green", font = ("Calibri", 30, "bold")) # header
+        top.place(x = 0, y = 0, width = screen_width, height = screen_height/12) # header placement
+        caribuku = ttk.Button(dashboard, text = "Cari Buku", command = cal.CariBuku)
+        caribuku.place(x = screen_width/25, y = screen_height/7, width = 150, height = 150)
+        pinjambuku = ttk.Button(dashboard, text = "Pinjam Buku")
+        pinjambuku.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
+        peminjaman = ttk.Button(dashboard, text = "Peminjaman")
+        peminjaman.place(x = screen_width/4.41, y = screen_height/7, width = 150, height = 150)
+        logout_btn = ttk.Button(dashboard, text = "Log out", command = cal.Logout)
+        logout_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
         dashboard.mainloop()
     def Logout(self):
         back = Tk()
