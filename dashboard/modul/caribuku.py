@@ -50,18 +50,10 @@ class CariBuku():
         clear_btn.place(x = screen_width/4, y = screen_height-250, width=230, height=50)
         logout_btn = ttk.Button(caribuku, text = "Back", command = cal.Logout)
         logout_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
-        #caribuku.mainloop()
     def Logout(self):
-        #back = Tk()
-        #back.withdraw()
-        #ask = tkinter.messagebox.askokcancel(title = "Back", message = "Apakah anda yakin untuk kembali?")
-        #if (ask == 1):
-            #mydb.commit()
             caribuku.destroy()
             get = dashboard.Dashboard
             get.Dashboard(self)
-        #else:
-            #back.destroy()
     def data(self):
         for i in tabel1.get_children():
            tabel1.delete(i)
