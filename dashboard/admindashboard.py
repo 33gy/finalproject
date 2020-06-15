@@ -18,10 +18,10 @@ class AdminDashboard():
         top.place(x = 0, y = 0, width = screen_width, height = screen_height/12) # header placement
         pendafataran_buku = ttk.Button(admindashboard, text = "Pendaftaran Buku", command = cal.PendaftaranBuku)
         pendafataran_buku.place(x = screen_width/25, y = screen_height/7, width = 150, height = 150)
-        peminjaman_admin = ttk.Button(admindashboard, text = "Peminjaman Admin")
-        peminjaman_admin.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
-        peminjaman = ttk.Button(admindashboard, text = "??")
-        peminjaman.place(x = screen_width/4.41, y = screen_height/7, width = 150, height = 150)
+        #peminjaman_admin = ttk.Button(admindashboard, text = "Peminjaman Admin")
+        #peminjaman_admin.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
+        #peminjaman = ttk.Button(admindashboard, text = "??")
+        #peminjaman.place(x = screen_width/4.41, y = screen_height/7, width = 150, height = 150)
         logout_btn = ttk.Button(admindashboard, text = "Log Out", command =   cal.Logout)
         logout_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
     def Logout(self):

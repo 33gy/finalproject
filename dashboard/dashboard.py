@@ -30,10 +30,10 @@ class Dashboard():
         top.place(x = 0, y = 0, width = screen_width, height = screen_height/12) # header placement
         caribuku = ttk.Button(dashboard, text = "Cari Buku", command = cal.CariBuku)
         caribuku.place(x = screen_width/25, y = screen_height/7, width = 150, height = 150)
-        pinjambuku = ttk.Button(dashboard, text = "Pinjam Buku")
-        pinjambuku.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
-        peminjaman = ttk.Button(dashboard, text = "Peminjaman")
-        peminjaman.place(x = screen_width/4.41, y = screen_height/7, width = 150, height = 150)
+        #pinjambuku = ttk.Button(dashboard, text = "Pinjam Buku")
+        #pinjambuku.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
+        #peminjaman = ttk.Button(dashboard, text = "Peminjaman")
+        #peminjaman.place(x = screen_width/4.41, y = screen_height/7, width = 150, height = 150)
         logout_btn = ttk.Button(dashboard, text = "Log out", command = cal.Logout)
         logout_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
         dashboard.mainloop()
@@ -43,7 +43,6 @@ class Dashboard():
         ask = tkinter.messagebox.askokcancel(title = "Log Out", message = "Apakah anda yakin untuk keluar?")
         if (ask == 1):
             dashboard.destroy()
-            #curr.reset(free=True)
             get = main.MainWindow()
             get.Main()
         else:
