@@ -51,6 +51,7 @@ class LoginSystem():
         if(usr == "" or passwd == ""):
             cal.NoInput()
         else:
+            mydb.commit()
             curr.execute("SELECT * from admin WHERE usrname = %s AND passwd = %s",(usr, passwd))
             usrgetadmin = curr.fetchone()
             curr.execute("SELECT * from user WHERE usrname = %s AND passwd = %s",(usr, passwd))
