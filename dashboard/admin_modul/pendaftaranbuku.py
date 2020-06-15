@@ -48,19 +48,13 @@ class PendaftaranBuku():
         back_btn = ttk.Button(pendaftaranbuku, text = "Back", command = cal.Back)
         back_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
     def Back(self):
-        #back = Tk()
-        #back.withdraw()
-        #ask = tkinter.messagebox.askokcancel(title = "Back", message = "Apakah anda yakin untuk kembali?")
-        #if (ask == 1):
-            pendaftaranbuku.destroy()
-            get = admindashboard.AdminDashboard
-            get.AdminDashboard(self)
-        #else:
-            #back.destroy()
+        pendaftaranbuku.destroy()
+        get = admindashboard.AdminDashboard
+        get.AdminDashboard(self)
     def NoInput(self):
         noinput = Tk()
         noinput.withdraw()
-        tkinter.messagebox.showinfo(title="Error", message="Masukan Username dan Password")
+        tkinter.messagebox.showinfo(title="Error", message="Masukan Tidak Lengkap")
         noinput.destroy()
     def InsertBuku(self):
         nama = nama_buku_entry.get()
