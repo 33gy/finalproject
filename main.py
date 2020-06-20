@@ -26,6 +26,7 @@ class MainWindow():
         exit_btn = ttk.Button(text = "Exit", command = cal.Quit) # Exit button
         exit_btn.place(x = screen_width/2.27, y = screen_height/4.2, width=230,height=50) # exit_btn placement
         main.configure(bg = "light cyan")
+        #aaaaaaa
     def Quit(self):
         back = Tk()
         back.withdraw()

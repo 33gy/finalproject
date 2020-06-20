@@ -3,7 +3,6 @@ import tkinter.ttk as ttk
 import tkinter.messagebox
 import main
 from dashboard.admin_modul.pendaftaranbuku import PendaftaranBuku
-from dashboard.admin_modul.penghapusanbuku import PenghapusanBuku
 
 class AdminDashboard():
     def AdminDashboard(self):
