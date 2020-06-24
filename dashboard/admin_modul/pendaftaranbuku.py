@@ -1,6 +1,9 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import tkinter.messagebox
+from tkinter import filedialog
+from PIL import ImageTk
+from PIL import Image
 import mysql.connector
 import main
 from dashboard import admindashboard
@@ -22,6 +25,8 @@ class PendaftaranBuku():
         global nama_buku_entry
         global penulis_buku_entry
         global penerbit_buku_entry
+        global canvas
+        global screen_height, screen_width
         cal = PendaftaranBuku()
         pendaftaranbuku = Tk()
         pendaftaranbuku.title("Pendaftaran Buku")
@@ -43,8 +48,12 @@ class PendaftaranBuku():
         penerbit_buku.place(x = screen_width/2.13, y = screen_height/4.2)
         penerbit_buku_entry = ttk.Entry(pendaftaranbuku)
         penerbit_buku_entry.place(x = screen_width/2.28, y = screen_height/3.6, width = 230, height = 30)
+        canvas = Canvas(pendaftaranbuku, width = 300, height = 400)
+        canvas.place(x = screen_width/7, y = screen_height/11)
+        insert_img = ttk.Button(pendaftaranbuku, text = "Insert Image", command = cal.InsertImage)
+        insert_img.place(x = screen_width/2.28, y = screen_height/3.1, width=230, height=50)
         insert_btn = ttk.Button(pendaftaranbuku, text = "Insert", command = cal.InsertBuku)
-        insert_btn.place(x = screen_width/2.28, y = screen_height/3.1, width=230, height=50)
+        insert_btn.place(x = screen_width/2.28, y = screen_height/2, width=230, height=50)
         back_btn = ttk.Button(pendaftaranbuku, text = "Back", command = cal.Back)
         back_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
     def Back(self):
@@ -68,6 +77,15 @@ class PendaftaranBuku():
             curr.execute("INSERT into daftar_buku(namabuku, penulisbuku, penerbitbuku) values (%s, %s, %s)", (nama, penulis, penerbit))
             mydb.commit()
             cal.SuccessInsert()
+    def InsertImage(self):
+        img = filedialog.askopenfilename(title = "Select A File", filetypes=(("png files", "*.png"),("jpg files","*.jpg")))
+        openimg = Image.open(img).resize((300, 400), Image.ANTIALIAS)
+        im = ImageTk.PhotoImage(openimg)
+        #im = PhotoImage(file = img, height = 400, width = 300)
+        mylabel = Label(pendaftaranbuku, image = im)
+        mylabel.image = im
+        mylabel.place(x = screen_width/7, y = screen_height/11, width = 300, height = 400)
+        
     def SuccessInsert(self):
         success = Tk()
         success.withdraw()

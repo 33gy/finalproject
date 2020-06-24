@@ -12,7 +12,7 @@ class MainWindow():
         global main
         main = Tk()
         main.title("LibrarySystem")
-        main.attributes("-fullscreen", True)
+        main.attributes("-fullscreen", True) 
         screen_width = main.winfo_screenwidth() # get screen width 
         screen_height = main.winfo_screenheight() # get screen height
         top = Label(text = "LibrarySystem", bg = "spring green", font = ("Calibri", 30, "bold")) # header
