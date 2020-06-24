@@ -25,6 +25,7 @@ class PendaftaranBuku():
         global nama_buku_entry
         global penulis_buku_entry
         global penerbit_buku_entry
+        global lokasi_buku_entry
         global canvas
         global screen_height, screen_width
         cal = PendaftaranBuku()
@@ -48,12 +49,16 @@ class PendaftaranBuku():
         penerbit_buku.place(x = screen_width/2.13, y = screen_height/4.2)
         penerbit_buku_entry = ttk.Entry(pendaftaranbuku)
         penerbit_buku_entry.place(x = screen_width/2.28, y = screen_height/3.6, width = 230, height = 30)
+        lokasi_buku = Label(pendaftaranbuku, text = "Lokasi Buku : ",  bg = "light cyan", font = ("Calibri", 20))
+        lokasi_buku.place(x = screen_width/2.18, y = screen_height/3.2)
+        lokasi_buku_entry = ttk.Entry(pendaftaranbuku)
+        lokasi_buku_entry.place(x = screen_width/2.28, y = screen_height/2.8, width = 230, height = 30)
         canvas = Canvas(pendaftaranbuku, width = 300, height = 400)
         canvas.place(x = screen_width/7, y = screen_height/11)
         insert_img = ttk.Button(pendaftaranbuku, text = "Insert Image", command = cal.InsertImage)
-        insert_img.place(x = screen_width/2.28, y = screen_height/3.1, width=230, height=50)
+        insert_img.place(x = screen_width/2.28, y = screen_height/2.5, width=230, height=50)
         insert_btn = ttk.Button(pendaftaranbuku, text = "Insert", command = cal.InsertBuku)
-        insert_btn.place(x = screen_width/2.28, y = screen_height/2, width=230, height=50)
+        insert_btn.place(x = screen_width/2.28, y = screen_height/2.2, width=230, height=50)
         back_btn = ttk.Button(pendaftaranbuku, text = "Back", command = cal.Back)
         back_btn.place(x = screen_width/2.28, y = screen_height-100, width=230, height=50)
     def Back(self):
@@ -69,12 +74,13 @@ class PendaftaranBuku():
         nama = nama_buku_entry.get()
         penulis = penulis_buku_entry.get()
         penerbit = penerbit_buku_entry.get()
+        lokasi = lokasi_buku_entry.get()
         cal = PendaftaranBuku()
         
         if (nama == "" or penulis == "" or penerbit == ""):
             cal.NoInput()
         else:
-            curr.execute("INSERT into daftar_buku(namabuku, penulisbuku, penerbitbuku) values (%s, %s, %s)", (nama, penulis, penerbit))
+            curr.execute("INSERT into daftar_buku(namabuku, penulisbuku, penerbitbuku, lokasi) values (%s, %s, %s, %s)", (nama, penulis, penerbit, lokasi))
             mydb.commit()
             cal.SuccessInsert()
     def InsertImage(self):
@@ -94,3 +100,4 @@ class PendaftaranBuku():
         nama_buku_entry.delete(0, 'end')
         penulis_buku_entry.delete(0, 'end')
         penerbit_buku_entry.delete(0, 'end')
+        lokasi_buku_entry.delete(0, 'end')
