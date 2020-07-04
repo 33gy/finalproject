@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 import tkinter.messagebox
 import main
 from dashboard.admin_modul.pendaftaranbuku import PendaftaranBuku
+from dashboard.admin_modul.penghapusanbuku import PenghapusanBuku
 
 class AdminDashboard():
     def AdminDashboard(self):
@@ -18,8 +19,8 @@ class AdminDashboard():
         top.place(x = 0, y = 0, width = screen_width, height = screen_height/12) # header placement
         pendafataran_buku = ttk.Button(admindashboard, text = "Pendaftaran Buku", command = cal.PendaftaranBuku)
         pendafataran_buku.place(x = screen_width/25, y = screen_height/7, width = 150, height = 150)
-        #penghapusan_buku = ttk.Button(admindashboard, text = "Penghapusan Buku", command = cal.PenghapusanBuku)
-        #penghapusan_buku.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
+        penghapusan_buku = ttk.Button(admindashboard, text = "Penghapusan Buku", command = cal.PenghapusanBuku)
+        penghapusan_buku.place(x = screen_width/7.5, y = screen_height/7, width = 150, height = 150)
         #peminjaman = ttk.Button(admindashboard, text = "??")
         #peminjaman.place(x = screen_width/4.41, y = screen_height/7, width = 150, height = 150)
         logout_btn = ttk.Button(admindashboard, text = "Log Out", command =   cal.Logout)

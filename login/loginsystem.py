@@ -1,9 +1,9 @@
-from tkinter import *
-import tkinter.ttk as ttk
-import tkinter.messagebox
+from tkinter import * 
+import tkinter.ttk as ttk 
+import tkinter.messagebox 
 import main
 import mysql.connector
-from dashboard import dashboard, admindashboard
+from dashboard import dashboard, admindashboard 
 
 
 global mydb
@@ -14,7 +14,7 @@ mydb = mysql.connector.connect(
   user="root",
   database="users"
 )
-curr=mydb.cursor()
+curr = mydb.cursor()
 
 
 class LoginSystem():

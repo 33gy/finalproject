@@ -1,9 +1,9 @@
-from tkinter import *
-import tkinter.ttk as ttk
-import tkinter.messagebox
-import sys
-from login import loginsystem, registsystem
-from dashboard import dashboard, admindashboard
+from tkinter import * # GUI
+import tkinter.ttk as ttk # tkinter theme   
+import tkinter.messagebox # tkinter message box
+import sys # exit librarysystem
+from login import loginsystem, registsystem # import module
+from dashboard import dashboard, admindashboard # import module
 
 
 class MainWindow():
